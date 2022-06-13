@@ -2,19 +2,18 @@ clear
 close all
 clc
 
-% add path to Jeremy's toolbox
-addpath('Marozeau_Timbre_Toolbox')
-addpath Marozeau_Timbre_Toolbox/slaney
-addpath Marozeau_Timbre_Toolbox/slaney/another_mex
+% % add path to Jeremy's toolbox
+% addpath('Marozeau_Timbre_Toolbox')
+% addpath Marozeau_Timbre_Toolbox/slaney
+% addpath Marozeau_Timbre_Toolbox/slaney/another_mex
+% 
+% help MFCC % Mel Frequency Cepstral Coefficent, look at 4 first coefficients
+% help CorrelogramArray % array of correlogram frames of audio
+% help env_conv % find out what it gives
 
-help MFCC % Mel Frequency Cepstral Coefficent, look at 4 first coefficients
-help CorrelogramArray % array of correlogram frames of audio
-help env_conv % find out what it gives
 
-
-% add path to own folder
-addpath Timbre_Analysis
-addpath Timbre_Analysis/audio
+% add path to audio folder
+addpath audio
 
 %%
 [x,fs] = audioread('sk8rboi.wav');
