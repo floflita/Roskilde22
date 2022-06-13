@@ -14,15 +14,26 @@ clc
 
 % add path to audio folder
 addpath audio
+addpath stft
 
 %%
-[x,fs] = audioread('sk8rboi.wav');
-T = length(x)/fs;
+% % read an audio file
+% [x,fs] = audioread('sk8rboi.wav');
+% T = length(x)/fs;
 
-window_size = 2^12;
-hop = 2^8;
+% create a signal
+fs = 48000;
+T = 10;
+t = 0:1/fs:T;
+f = 2000;
+x = 0.5 * sin(2*pi*f*t);
 
-[X,t,f] = stft(x,fs);
+w = fs; % put the window size to 1 second
+R = 2^8; % shift
+M = pow2(nextpow2(w)); % dft size
+
+[X,t,f] = stft(x,fs,w,R,M);
+t = 0:1/fs:T;
 
 
 rolloff = spectral_rolloff(X,f);
@@ -51,3 +62,11 @@ ylabel('Spectral Centroid [Hz]')
 title('Spectral Centroid')
 xlim([0 T])
 
+
+SS = spectral_spread(SC,X,f);
+figure;
+plot(t,SS, 'LineWidth', 2)
+xlabel('time [s]')
+ylabel('Spectral Spread [Hz]')
+title('Spectral Spread')
+xlim([0 T])
